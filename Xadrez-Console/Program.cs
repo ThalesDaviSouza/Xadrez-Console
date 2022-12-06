@@ -7,13 +7,18 @@ namespace Chess_Console {
     class Program {
         static void Main(string[] args) {
             try {
-                Board b = new Board(8, 8);
+                ChessMatch chessMatch = new ChessMatch();
+                Screen.PrintBoard(chessMatch.board);
 
-                b.AddPiece(new Tower(Color.Black, b), new Position(0, 0));
-                b.AddPiece(new Tower(Color.White, b), new Position(2, 0));
-                b.AddPiece(new King(Color.Black, b), new Position(4, 2));
+                Console.WriteLine();
+                Console.WriteLine("Origin: ");
+                Position origin = Screen.ReadChessPosition();
+                Console.WriteLine("Destiny: ");
+                Position destiny = Screen.ReadChessPosition();
 
-                Screen.PrintBoard(b);
+                chessMatch.DoMoviment(origin, destiny);
+                Screen.PrintBoard(chessMatch.board);
+
             }
             catch(BoardException e) {
                 Console.WriteLine(e.Message);

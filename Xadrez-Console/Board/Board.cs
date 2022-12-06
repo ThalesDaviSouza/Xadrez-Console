@@ -46,6 +46,16 @@
             return true;
         }
 
+        public Piece? RemovePiece(Position position) {
+            if (ThereIsPiece(position)) {
+                Piece removed = pieces[position.Line, position.Column];
+                pieces[position.Line, position.Column] = null;
+                return removed;
+            }
+
+            return null;
+        }
+
         // Exceptions Methods
         // Position Exceptions
         public bool IsValidadPosition(Position position) {

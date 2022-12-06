@@ -1,4 +1,5 @@
 ﻿using board;
+using Chess;
 
 namespace Chess_Console {
     internal class Screen {
@@ -45,6 +46,13 @@ namespace Chess_Console {
                 Console.Write(piece);
                 Console.ForegroundColor = defaultColor;
             }
+        }
+
+        public static Position ReadChessPosition() {
+            string input = Console.ReadLine();
+            char column = input[0];
+            int line = int.Parse(input[1] + "");
+            return new ChessPosition(column, line).toPosition();
         }
     }
 }

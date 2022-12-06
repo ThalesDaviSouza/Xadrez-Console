@@ -15,5 +15,10 @@
             return pieces[line, column];
         }
 
+        public void AddPiece(Piece piece, Position position) {
+            pieces[position.Line, position.Column] = piece;
+            piece.SetPosition(position);
+        }
+
     }
 }

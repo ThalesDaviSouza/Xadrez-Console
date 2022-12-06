@@ -1,6 +1,6 @@
 ﻿using board;
 
-namespace Xadrez_Console {
+namespace Chess_Console {
     internal class Screen {
         public static void printBoard(Board board) {
 

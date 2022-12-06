@@ -1,6 +1,6 @@
 ﻿using board;
 
-namespace Xadrez {
+namespace Chess {
     internal class Tower : Piece{
         public Tower(Color color, Board board) : base(color, board) { }
 

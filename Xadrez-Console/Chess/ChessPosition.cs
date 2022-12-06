@@ -1,11 +1,11 @@
 ﻿using board;
 
-namespace Xadrez {
-    internal class XadrezPosition {
+namespace Chess {
+    internal class ChessPosition {
         public int Line { get; private set; }
         public char Column { get; private set; }
 
-        public XadrezPosition(char column, int line) {
+        public ChessPosition(char column, int line) {
             Line = line;
             Column = column;
         }

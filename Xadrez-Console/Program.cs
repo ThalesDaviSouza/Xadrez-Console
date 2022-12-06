@@ -1,12 +1,12 @@
 ﻿using System;
 using board;
-using Xadrez;
+using Chess;
 
 
-namespace Xadrez_Console {
+namespace Chess_Console {
     class Program {
         static void Main(string[] args) {
-            XadrezPosition p = new XadrezPosition('a', 2);
+            ChessPosition p = new ChessPosition('a', 2);
             Console.WriteLine(p);
             Console.WriteLine(p.toPosition());
         }

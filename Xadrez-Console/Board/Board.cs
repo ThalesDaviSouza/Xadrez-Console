@@ -10,5 +10,10 @@
             pieces = new Piece[Lines, Columns];
         }
 
+        // Getter to get a specific piece from the board
+        public Piece GetPiece(int line, int column) {
+            return pieces[line, column];
+        }
+
     }
 }

@@ -29,6 +29,9 @@
         public void AddPiece(Piece piece, Position position) {
             ValidatePosition(position);
 
+            if (ThereIsPiece(position)) {
+                throw new BoardException("There is a piece in this place!");
+            }
             pieces[position.Line, position.Column] = piece;
             piece.SetPosition(position);
         }

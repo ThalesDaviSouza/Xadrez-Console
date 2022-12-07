@@ -3,13 +3,15 @@
 namespace Chess {
     internal class ChessMatch {
         public Board board { get; private set; }
-        private int turn;
-        private Color currentPlayer;
+        public int Turn { get; private set; }
+        public Color CurrentPlayer { get; private set; }
+        public bool Finished { get; private set; }
 
         public ChessMatch() {
             board = new Board(8, 8);
-            turn = 1;
-            currentPlayer = Color.White;
+            Turn = 1;
+            Finished = false;
+            CurrentPlayer = Color.White;
             PutPieces();
         }
 
@@ -17,8 +19,41 @@ namespace Chess {
             Piece piece = board.RemovePiece(origin);
             Piece? capturedPiece = board.RemovePiece(destiny);
             board.AddPiece(piece, destiny);
+        }
+
+        public void PassTurn(Position origin, Position destiny) {
+            DoMoviment(origin, destiny);
+            if(CurrentPlayer == Color.White) {
+                CurrentPlayer = Color.Black;
+            }
+            else {
+                CurrentPlayer = Color.White;
+            }
+            Turn++;
 
         }
+
+        public void ValidateOrigin(Position position) {
+            if(board.GetPiece(position) == null) {
+                throw new BoardException("Does not exist a piece in origin!");
+            }
+
+            if(CurrentPlayer != board.GetPiece(position).color) {
+                throw new BoardException("The piece in origin isn't your piece!");
+            }
+
+            if (!board.GetPiece(position).HasPossibleMoviments()) {
+                throw new BoardException("Does not possible moviments to chosen piece!");
+            }
+
+        }
+
+        public void ValidateDestiny(Position origin, Position destiny) {
+            if (!board.GetPiece(origin).CanMoveTo(destiny)) {
+                throw new BoardException("Destiny position is invalid!");
+            }
+        }
+
 
         private void PutPieces() {
             board.AddPiece(new Tower(Color.Black, board), new ChessPosition('a', 1).toPosition());

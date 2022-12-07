@@ -21,6 +21,24 @@
             return (pieceInDestiny == null) || (pieceInDestiny.color != this.color);
         }
 
+        public bool HasPossibleMoviments() {
+            bool[,] possibleMoviments = PossibleMoviments();
+
+            for(int i = 0; i < board.Lines; i++) {
+                for(int j = 0; j < board.Columns; j++) {
+                    if (possibleMoviments[i, j]) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public bool CanMoveTo(Position position) {
+            return PossibleMoviments()[position.Line, position.Column];
+        }
+
         public abstract bool[,] PossibleMoviments();
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace board {
-    internal class Piece {
-        public Position? position { get; protected set; }
+    internal abstract class Piece {
+        public Position position { get; protected set; }
         public Color color { get; protected set; }
         public int MovesQuantity { get; protected set; }
         public Board board { get; protected set; }
@@ -15,6 +15,13 @@
         public void SetPosition(Position position) {
             this.position = position;
         }
+
+        private protected bool canMove(Position position) {
+            Piece pieceInDestiny = board.GetPiece(position);
+            return (pieceInDestiny == null) || (pieceInDestiny.color != this.color);
+        }
+
+        public abstract bool[,] PossibleMoviments();
 
     }
 }

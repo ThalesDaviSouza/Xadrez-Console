@@ -10,6 +10,14 @@ namespace board {
             Column = column;
         }
 
+        public void SetLine(int line) {
+            Line = line;
+        }
+
+        public void SetColumn(int column) {
+            Column = column;
+        }
+
         public override string ToString() {
             return $"{Line}, {Column}";
         }

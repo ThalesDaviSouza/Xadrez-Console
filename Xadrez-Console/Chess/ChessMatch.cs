@@ -23,6 +23,7 @@ namespace Chess {
         private void PutPieces() {
             board.AddPiece(new Tower(Color.Black, board), new ChessPosition('a', 1).toPosition());
             board.AddPiece(new Tower(Color.White, board), new ChessPosition('d', 4).toPosition());
+            board.AddPiece(new Tower(Color.Black, board), new ChessPosition('d', 3).toPosition());
             board.AddPiece(new King(Color.Black, board), new ChessPosition('g', 3).toPosition());
         }
 

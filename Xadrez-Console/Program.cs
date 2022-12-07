@@ -10,11 +10,13 @@ namespace Chess_Console {
                 ChessMatch chessMatch = new ChessMatch();
                 Screen.PrintBoard(chessMatch.board);
 
-                Console.WriteLine();
                 Console.WriteLine("Origin: ");
                 Position origin = Screen.ReadChessPosition();
+                Console.Clear();
+                Screen.PrintBoard(chessMatch.board, chessMatch.board.GetPiece(origin).PossibleMoviments());
                 Console.WriteLine("Destiny: ");
                 Position destiny = Screen.ReadChessPosition();
+                Console.Clear();
 
                 chessMatch.DoMoviment(origin, destiny);
                 Screen.PrintBoard(chessMatch.board);

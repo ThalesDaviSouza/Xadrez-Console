@@ -103,7 +103,7 @@ namespace Chess {
         }
 
         public void ValidateDestiny(Position origin, Position destiny) {
-            if (!board.GetPiece(origin).CanMoveTo(destiny)) {
+            if (!board.GetPiece(origin).PossibleMoviment(destiny)) {
                 throw new BoardException("Destiny position is invalid!");
             }
         }
@@ -179,6 +179,9 @@ namespace Chess {
             PutPiece('h', 7, new Tower(Color.White, board));
             PutPiece('c', 1, new Tower(Color.White, board));
             PutPiece('d', 1, new King(Color.White, board));
+            PutPiece('c', 7, new Pawn(Color.White, board));
+            PutPiece('d', 3, new Pawn(Color.White, board));
+            PutPiece('g', 7, new Pawn(Color.Black, board));
         }
 
 

@@ -13,20 +13,23 @@ namespace Chess_Console {
                         Screen.PrintGame(chessMatch);
                         Console.Write("Origin: ");
                         Position origin = Screen.ReadChessPosition();
-                        Console.Clear();
                         chessMatch.ValidateOrigin(origin);
+                        Console.Clear();
 
                         Screen.PrintGame(chessMatch, chessMatch.board.GetPiece(origin).PossibleMoviments());
                         Console.WriteLine();
                         Console.Write("Destiny: ");
                         Position destiny = Screen.ReadChessPosition();
-                        Console.Clear();
                         chessMatch.ValidateDestiny(origin, destiny);
-
                         chessMatch.PassTurn(origin, destiny);
+
+
+                        Console.Clear();
                     }
                     catch(BoardException e) {
                         Console.WriteLine(e.Message);
+                        Console.ReadKey();
+                        Console.Clear();
                     }
                 }
             }

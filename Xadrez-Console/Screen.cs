@@ -62,16 +62,17 @@ namespace Chess_Console {
         public static void PrintGame(ChessMatch match) {
             PrintBoard(match.board);
             Console.WriteLine();
-            
+
+            Console.WriteLine("Captured Pieces:");
+            PrintPiecesCaptured(match);
+            Console.WriteLine();
+
             Console.WriteLine($"Turn of player: {match.CurrentPlayer}");
             Console.WriteLine();
             
-            PrintPiecesCaptured(match);
-            Console.WriteLine();
-            
             Console.WriteLine($"Turn: #{match.Turn}");
-
         }
+
         public static void PrintGame(ChessMatch match, bool[,] possibleMoviments) {
             PrintBoard(match.board, possibleMoviments);
             Console.WriteLine();
@@ -79,11 +80,7 @@ namespace Chess_Console {
             Console.WriteLine($"Turn of player: {match.CurrentPlayer}");
             Console.WriteLine();
 
-            PrintPiecesCaptured(match);
-            Console.WriteLine();
-
             Console.WriteLine($"Turn: #{match.Turn}");
-
         }
 
         public static void PrintPiecesCaptured(ChessMatch match) {

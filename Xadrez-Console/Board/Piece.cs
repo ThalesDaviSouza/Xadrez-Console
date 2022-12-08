@@ -16,6 +16,13 @@
             this.position = position;
         }
 
+        public void IncrementMoves() {
+            MovesQuantity++;
+        }
+        public void DecrementMoves() {
+            MovesQuantity--;
+        }
+
         private protected bool canMove(Position position) {
             Piece pieceInDestiny = board.GetPiece(position);
             return (pieceInDestiny == null) || (pieceInDestiny.color != this.color);

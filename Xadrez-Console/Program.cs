@@ -10,22 +10,13 @@ namespace Chess_Console {
                 ChessMatch chessMatch = new ChessMatch();
                 while (!chessMatch.Finished) {
                     try {
-                        Screen.PrintBoard(chessMatch.board);
-                        Console.WriteLine();
-                        Console.WriteLine($"Turn: #{chessMatch.Turn}");
-                        Console.WriteLine($"Turn of player: {chessMatch.CurrentPlayer}");
-                        Console.WriteLine();
-
+                        Screen.PrintGame(chessMatch);
                         Console.Write("Origin: ");
                         Position origin = Screen.ReadChessPosition();
                         Console.Clear();
                         chessMatch.ValidateOrigin(origin);
 
-                        Screen.PrintBoard(chessMatch.board, chessMatch.board.GetPiece(origin).PossibleMoviments());
-                        Console.WriteLine();
-                        Console.WriteLine($"Turn: #{chessMatch.Turn}");
-                        Console.WriteLine($"Turn of player: {chessMatch.CurrentPlayer}");
-
+                        Screen.PrintGame(chessMatch, chessMatch.board.GetPiece(origin).PossibleMoviments());
                         Console.WriteLine();
                         Console.Write("Destiny: ");
                         Position destiny = Screen.ReadChessPosition();

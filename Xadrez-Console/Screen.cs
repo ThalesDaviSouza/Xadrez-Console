@@ -59,6 +59,52 @@ namespace Chess_Console {
             Console.WriteLine();
         }
 
+        public static void PrintGame(ChessMatch match) {
+            PrintBoard(match.board);
+            Console.WriteLine();
+            
+            Console.WriteLine($"Turn of player: {match.CurrentPlayer}");
+            Console.WriteLine();
+            
+            PrintPiecesCaptured(match);
+            Console.WriteLine();
+            
+            Console.WriteLine($"Turn: #{match.Turn}");
+
+        }
+        public static void PrintGame(ChessMatch match, bool[,] possibleMoviments) {
+            PrintBoard(match.board, possibleMoviments);
+            Console.WriteLine();
+
+            Console.WriteLine($"Turn of player: {match.CurrentPlayer}");
+            Console.WriteLine();
+
+            PrintPiecesCaptured(match);
+            Console.WriteLine();
+
+            Console.WriteLine($"Turn: #{match.Turn}");
+
+        }
+
+        public static void PrintPiecesCaptured(ChessMatch match) {
+            ConsoleColor defaultColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Whites: ");
+            PrintSet(match, Color.White);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Blacks: ");
+            PrintSet(match, Color.Black);
+            Console.ForegroundColor = defaultColor;
+        }
+
+        public static void PrintSet(ChessMatch match, Color color) {
+            Console.Write("{ ");
+            foreach (Piece p in match.PiecesCaptured(color)) {
+                Console.Write(p + " ");
+            }
+            Console.WriteLine("}");
+        }
+
         public static void PrintPiece(Piece piece) {
             // If the piece is null, print "-" in the place
             if (piece == null) {

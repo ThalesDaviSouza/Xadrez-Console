@@ -10,6 +10,7 @@ namespace Chess_Console {
                 ChessMatch chessMatch = new ChessMatch();
                 while (!chessMatch.Finished) {
                     try {
+                        Console.Clear();
                         Screen.PrintGame(chessMatch);
                         Console.Write("Origin: ");
                         Position origin = Screen.ReadChessPosition();
@@ -22,16 +23,14 @@ namespace Chess_Console {
                         Position destiny = Screen.ReadChessPosition();
                         chessMatch.ValidateDestiny(origin, destiny);
                         chessMatch.PassTurn(origin, destiny);
-
-
-                        Console.Clear();
                     }
                     catch(BoardException e) {
                         Console.WriteLine(e.Message);
                         Console.ReadKey();
-                        Console.Clear();
                     }
                 }
+                Console.WriteLine("CHECKMATE!");
+                Console.WriteLine($"Winner: {chessMatch.CurrentPlayer}!!!");
             }
             catch (BoardException e) {
                 Console.WriteLine(e.Message);

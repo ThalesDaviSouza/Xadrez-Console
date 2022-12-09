@@ -21,16 +21,44 @@ namespace Chess {
             PutPieces();
         }
 
+        private bool isCastlingShort(Position origin, Position destiny) {
+            return (destiny.Column == origin.Column + 2);
+        }
+
+        private bool isCastlingLong(Position origin, Position destiny) {
+            return (destiny.Column == origin.Column - 2);
+        }
+
         public Piece DoMoviment(Position origin, Position destiny) {
             Piece piece = board.RemovePiece(origin);
             piece.IncrementMoves();
 
-            Piece? capturedPiece = board.RemovePiece(destiny);
+            Piece capturedPiece = board.RemovePiece(destiny);
             board.AddPiece(piece, destiny);
-
 
             if (capturedPiece != null) {
                 piecesCaptured.Add(capturedPiece);
+            }
+
+            // Special Moves
+            // Castling Short
+            if(piece is King && isCastlingShort(origin, destiny)) {
+                // Moving the rook in castling short
+                Position originRook = new Position(origin.Line, origin.Column + 3);
+                Position destinyRook = new Position(origin.Line, origin.Column + 1);
+                Piece rook = board.RemovePiece(originRook);
+                rook.IncrementMoves();
+                board.AddPiece(rook, destinyRook);
+            }
+
+            // Castling Long
+            if (piece is King && isCastlingLong(origin, destiny)) {
+                // Moving the rook in castling long
+                Position originRook = new Position(origin.Line, origin.Column - 4);
+                Position destinyRook = new Position(origin.Line, origin.Column - 1);
+                Piece rook = board.RemovePiece(originRook);
+                rook.IncrementMoves();
+                board.AddPiece(rook, destinyRook);
             }
 
             return capturedPiece;
@@ -44,6 +72,27 @@ namespace Chess {
                 piecesCaptured.Remove(capturedPiece);
             }
             board.AddPiece(piece, origin);
+
+            // Special Moves
+            // Castling Short
+            if (piece is King && isCastlingShort(origin, destiny)) {
+                // Moving the rook in castling short
+                Position originRook = new Position(origin.Line, origin.Column + 3);
+                Position destinyRook = new Position(origin.Line, origin.Column + 1);
+                Piece rook = board.RemovePiece(destinyRook);
+                rook.DecrementMoves();
+                board.AddPiece(rook, originRook);
+            }
+
+            // Castling Long
+            if (piece is King && isCastlingLong(origin, destiny)) {
+                // Moving the rook in castling long
+                Position originRook = new Position(origin.Line, origin.Column - 4);
+                Position destinyRook = new Position(origin.Line, origin.Column - 1);
+                Piece rook = board.RemovePiece(destinyRook);
+                rook.DecrementMoves();
+                board.AddPiece(rook, originRook);
+            }
         }
 
         public Color OpossingColor(Color color) {
@@ -176,12 +225,12 @@ namespace Chess {
         private void PutPieces() {
             //Line 8 (Black)
             PutPiece('a', 8, new Rook(Color.Black, board));
-            PutPiece('b', 8, new Cavalier(Color.Black, board));
-            PutPiece('c', 8, new Bishop(Color.Black, board));
-            PutPiece('d', 8, new Queen(Color.Black, board));
-            PutPiece('e', 8, new King(Color.Black, board));
-            PutPiece('f', 8, new Bishop(Color.Black, board));
-            PutPiece('g', 8, new Cavalier(Color.Black, board));
+            //PutPiece('b', 8, new Cavalier(Color.Black, board));
+            //PutPiece('c', 8, new Bishop(Color.Black, board));
+            //PutPiece('d', 8, new Queen(Color.Black, board));
+            PutPiece('e', 8, new King(Color.Black, board, this));
+            //PutPiece('f', 8, new Bishop(Color.Black, board));
+            //PutPiece('g', 8, new Cavalier(Color.Black, board));
             PutPiece('h', 8, new Rook(Color.Black, board));
 
             //Line 7 (Black)
@@ -196,12 +245,12 @@ namespace Chess {
 
             //Line 1 (White)
             PutPiece('a', 1, new Rook(Color.White, board));
-            PutPiece('b', 1, new Cavalier(Color.White, board));
-            PutPiece('c', 1, new Bishop(Color.White, board));
-            PutPiece('d', 1, new Queen(Color.White, board));
-            PutPiece('e', 1, new King(Color.White, board));
-            PutPiece('f', 1, new Bishop(Color.White, board));
-            PutPiece('g', 1, new Cavalier(Color.White, board));
+            //PutPiece('b', 1, new Cavalier(Color.White, board));
+            //PutPiece('c', 1, new Bishop(Color.White, board));
+            //PutPiece('d', 1, new Queen(Color.White, board));
+            PutPiece('e', 1, new King(Color.White, board, this));
+            //PutPiece('f', 1, new Bishop(Color.White, board));
+            //PutPiece('g', 1, new Cavalier(Color.White, board));
             PutPiece('h', 1, new Rook(Color.White, board));
 
             //Line 2 (White)

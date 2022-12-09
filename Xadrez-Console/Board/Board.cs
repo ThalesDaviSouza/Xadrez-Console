@@ -46,7 +46,7 @@
             return true;
         }
 
-        public Piece? RemovePiece(Position position) {
+        public Piece RemovePiece(Position position) {
             if (ThereIsPiece(position)) {
                 Piece removed = pieces[position.Line, position.Column];
                 pieces[position.Line, position.Column] = null;

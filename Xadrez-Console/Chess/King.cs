@@ -22,49 +22,49 @@ namespace Chess {
 
             // Up
             Position up = new Position(position.Line - 1, position.Column);
-            if(board.IsValidadPosition(up) && canMove(up)) {
+            if(board.IsValidPosition(up) && canMove(up)) {
                 possibleMoviments[up.Line, up.Column] = true;
             }
 
             // Northwest
             Position northwest = new Position(position.Line - 1, position.Column - 1);
-            if (board.IsValidadPosition(northwest) && canMove(northwest)) {
+            if (board.IsValidPosition(northwest) && canMove(northwest)) {
                 possibleMoviments[northwest.Line, northwest.Column] = true;
             }
 
             // Northeast
             Position northeast = new Position(position.Line - 1, position.Column + 1 );
-            if (board.IsValidadPosition(northeast) && canMove(northeast)) {
+            if (board.IsValidPosition(northeast) && canMove(northeast)) {
                 possibleMoviments[northeast.Line, northeast.Column] = true;
             }
 
             // Left
             Position left = new Position(position.Line, position.Column - 1);
-            if (board.IsValidadPosition(left) && canMove(left)) {
+            if (board.IsValidPosition(left) && canMove(left)) {
                 possibleMoviments[left.Line, left.Column] = true;
             }
 
             // Right
             Position right = new Position(position.Line, position.Column + 1);
-            if (board.IsValidadPosition(right) && canMove(right)) {
+            if (board.IsValidPosition(right) && canMove(right)) {
                 possibleMoviments[right.Line, right.Column] = true;
             }
 
             // Below
             Position below = new Position(position.Line + 1, position.Column);
-            if (board.IsValidadPosition(below) && canMove(below)) {
+            if (board.IsValidPosition(below) && canMove(below)) {
                 possibleMoviments[below.Line, below.Column] = true;
             }
 
             // South-West
             Position southWest = new Position(position.Line + 1, position.Column - 1);
-            if (board.IsValidadPosition(southWest) && canMove(southWest)) {
+            if (board.IsValidPosition(southWest) && canMove(southWest)) {
                 possibleMoviments[southWest.Line, southWest.Column] = true;
             }
 
             // South-East
             Position southEast = new Position(position.Line + 1, position.Column + 1);
-            if (board.IsValidadPosition(southEast) && canMove(southEast)) {
+            if (board.IsValidPosition(southEast) && canMove(southEast)) {
                 possibleMoviments[southEast.Line, southEast.Column] = true;
             }
 

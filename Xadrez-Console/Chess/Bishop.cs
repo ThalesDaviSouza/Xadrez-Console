@@ -13,7 +13,7 @@ namespace Chess {
 
             // Up and Left
             Position upLeft = new Position(position.Line - 1, position.Column - 1);
-            while (board.IsValidadPosition(upLeft) && canMove(upLeft)) {
+            while (board.IsValidPosition(upLeft) && canMove(upLeft)) {
                 possibleMoviments[upLeft.Line, upLeft.Column] = true;
                 if ((board.GetPiece(upLeft) != null) && (board.GetPiece(upLeft).color != this.color)) {
                     break;
@@ -25,7 +25,7 @@ namespace Chess {
 
             // Up and Right
             Position upRight = new Position(position.Line - 1, position.Column + 1);
-            while (board.IsValidadPosition(upRight) && canMove(upRight)) {
+            while (board.IsValidPosition(upRight) && canMove(upRight)) {
                 possibleMoviments[upRight.Line, upRight.Column] = true;
                 if ((board.GetPiece(upRight) != null) && (board.GetPiece(upRight).color != this.color)) {
                     break;
@@ -37,7 +37,7 @@ namespace Chess {
 
             // Under and Left
             Position underLeft = new Position(position.Line + 1, position.Column - 1);
-            while (board.IsValidadPosition(underLeft) && canMove(underLeft)) {
+            while (board.IsValidPosition(underLeft) && canMove(underLeft)) {
                 possibleMoviments[underLeft.Line, underLeft.Column] = true;
                 if ((board.GetPiece(underLeft) != null) && (board.GetPiece(underLeft).color != this.color)) {
                     break;
@@ -49,7 +49,7 @@ namespace Chess {
 
             // Under and Right
             Position underRight = new Position(position.Line + 1, position.Column + 1);
-            while (board.IsValidadPosition(underRight) && canMove(underRight)) {
+            while (board.IsValidPosition(underRight) && canMove(underRight)) {
                 possibleMoviments[underRight.Line, underRight.Column] = true;
                 if ((board.GetPiece(underRight) != null) && (board.GetPiece(underRight).color != this.color)) {
                     break;

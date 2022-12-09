@@ -58,7 +58,7 @@
 
         // Exceptions Methods
         // Position Exceptions
-        public bool IsValidadPosition(Position position) {
+        public bool IsValidPosition(Position position) {
             // Validanting the Line number
             if(position.Line < 0 || position.Line >= Lines) {
                 return false;
@@ -73,12 +73,12 @@
         }
 
         public void ValidatePosition(Position position) {
-            if (!IsValidadPosition(position)) {
+            if (!IsValidPosition(position)) {
                 throw new BoardException("Invalid position!");
             }
         }
         public void ValidatePosition(int line, int column) {
-            if (!IsValidadPosition(new Position(line, column))) {
+            if (!IsValidPosition(new Position(line, column))) {
                 throw new BoardException("Invalid position!");
             }
         }

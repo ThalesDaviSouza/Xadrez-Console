@@ -175,9 +175,9 @@ namespace Chess {
 
         private void PutPieces() {
             PutPiece('a', 8, new King(Color.Black, board));
-            PutPiece('b', 8, new Tower(Color.Black, board));
-            PutPiece('h', 7, new Tower(Color.White, board));
-            PutPiece('c', 1, new Tower(Color.White, board));
+            PutPiece('b', 8, new Rook(Color.Black, board));
+            PutPiece('h', 7, new Rook(Color.White, board));
+            PutPiece('c', 1, new Rook(Color.White, board));
             PutPiece('d', 1, new King(Color.White, board));
             PutPiece('c', 7, new Pawn(Color.White, board));
             PutPiece('d', 3, new Pawn(Color.White, board));

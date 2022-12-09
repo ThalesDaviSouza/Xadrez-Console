@@ -184,7 +184,8 @@ namespace Chess {
             PutPiece('g', 7, new Pawn(Color.Black, board));
             PutPiece('d', 6, new Cavalier(Color.White, board));
             PutPiece('d', 4, new Cavalier(Color.Black, board));
-
+            PutPiece('e', 5, new Queen(Color.White, board));
+            PutPiece('c', 4, new Queen(Color.Black, board));
         }
 
 

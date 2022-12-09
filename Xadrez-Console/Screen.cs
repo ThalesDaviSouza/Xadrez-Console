@@ -129,5 +129,17 @@ namespace Chess_Console {
             int line = int.Parse(input[1] + "");
             return new ChessPosition(column, line).toPosition();
         }
+
+        public static char AskPromotion() {
+            Console.WriteLine("What promotion you want?");
+            Console.WriteLine("{ C } - Cavalier/Knight");
+            Console.WriteLine("{ R } - Rook");
+            Console.WriteLine("{ B } - Bishop");
+            Console.WriteLine("{ Q } - Queen");
+            Console.Write("Write your choice: ");
+            char choice = char.Parse(Console.ReadLine().ToLower());
+
+            return choice;
+        }
     }
 }

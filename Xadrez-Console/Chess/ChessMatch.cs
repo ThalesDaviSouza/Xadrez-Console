@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using board;
+using Chess_Console;
 
 namespace Chess {
     internal class ChessMatch {
@@ -16,7 +17,7 @@ namespace Chess {
             board = new Board(8, 8);
             Turn = 1;
             Finished = false;
-            CurrentPlayer = Color.Black;
+            CurrentPlayer = Color.White;
             piecesInGame = new HashSet<Piece>();
             piecesCaptured = new HashSet<Piece>();
             PieceVulnerableToEnPassant = null;
@@ -44,7 +45,7 @@ namespace Chess {
 
             // Special Moves
             // Castling Short
-            if(piece is King && isCastlingShort(origin, destiny)) {
+            if (piece is King && isCastlingShort(origin, destiny)) {
                 // Moving the rook in castling short
                 Position originRook = new Position(origin.Line, origin.Column + 3);
                 Position destinyRook = new Position(origin.Line, origin.Column + 1);
@@ -64,10 +65,10 @@ namespace Chess {
             }
 
             // En Passant
-            if(piece is Pawn) {
-                if(origin.Column != destiny.Column && capturedPiece == null) {
+            if (piece is Pawn) {
+                if (origin.Column != destiny.Column && capturedPiece == null) {
                     Position capturedPawn;
-                    if(piece.color == Color.White) {
+                    if (piece.color == Color.White) {
                         capturedPawn = new Position(destiny.Line + 1, destiny.Column);
                     }
                     else {
@@ -144,6 +145,10 @@ namespace Chess {
             }
         }
 
+        private bool isPromotion(Piece piece, Position destiny) {
+            return ((piece.color == Color.White) && (destiny.Line == 0)) || ((piece.color == Color.Black) && (destiny.Line == 7));
+        }
+
         public void PassTurn(Position origin, Position destiny) {
             Piece capturedPiece = DoMoviment(origin, destiny);
 
@@ -167,11 +172,40 @@ namespace Chess {
             // Special Moves 
             // En Passant
             Piece piece = board.GetPiece(destiny);
-            if((piece is Pawn) && (destiny.Line == origin.Line - 2 || destiny.Line == origin.Line + 2)) {
+            if ((piece is Pawn) && (destiny.Line == origin.Line - 2 || destiny.Line == origin.Line + 2)) {
                 PieceVulnerableToEnPassant = piece;
             }
             else {
                 PieceVulnerableToEnPassant = null;
+            }
+
+            // Promotion
+            if (piece is Pawn) {
+                if (isPromotion(piece, destiny)) {
+                    char promotion = Screen.AskPromotion();
+                    Piece promotedPiece;
+                    switch (promotion) {
+                        case 'c':
+                            promotedPiece = new Cavalier(piece.color, board);
+                            break;
+                        case 'r':
+                            promotedPiece = new Rook(piece.color, board);
+                            break;
+                        case 'b':
+                            promotedPiece = new Bishop(piece.color, board);
+                            break;
+                        case 'q':
+                            promotedPiece = new Queen(piece.color, board);
+                            break;
+                        default:
+                            promotedPiece = new Queen(piece.color, board);
+                            break;
+                    }
+                    piece = board.RemovePiece(destiny);
+                    piecesInGame.Remove(piece);
+                    board.AddPiece(promotedPiece, destiny);
+                    piecesInGame.Add(promotedPiece);
+                }
             }
 
             ChangePlayer();
